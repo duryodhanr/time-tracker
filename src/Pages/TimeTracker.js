@@ -3,7 +3,7 @@ import Input from '../Components/Input.js';
 import Button from '../Components/Button.js';
 import WorkLog from '../Components/WorkLog.js';
 import Timer from '../Components/Timer.js';
-import './TimeTracker.css';
+import './TimeTracker.scss';
 
 class TimeTracker extends Component {
   constructor(props) {
@@ -43,7 +43,7 @@ class TimeTracker extends Component {
           />
           <div className="actions">
             <Button onClick={this.onLogWork.bind(this)} text="Log Work"/>
-            <Button onClick={this.resetForm.bind(this)} text="Reset Form"/>
+            <Button onClick={this.resetForm.bind(this)} text="Reset Clock"/>
             <Button onClick={this.props.onLogout} text="Logout"/>
           </div>
         <WorkLog log={this.props.log}/>

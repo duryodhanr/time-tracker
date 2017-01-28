@@ -9,19 +9,22 @@ class WorkLog extends Component {
   render() {
     return (
         <div className="work-log">
-            <h2>Work Log</h2>
             <div className="log">
                 {this.props.log.sort(this.sortLog).map((log, index) => {
                     return (
                     <div className='log-item' key={index}>
-                        <div className='log-item-date'>
-                            {Moment.unix(log.date).format("dddd, MMMM Do YYYY")}
+                        <div className='log-item-row'>
+                            <div className='log-item-date'>
+                                {Moment.unix(log.date).format("ddd, Do MMM YY")}
+                            </div>
+                            <div className='log-item-time'>
+                                {TimeFormatter(log.secondsElapsed)}
+                            </div>
                         </div>
-                        <div className='log-item-description'>
-                            {log.description}
-                        </div>
-                        <div className='log-item-time'>
-                            {TimeFormatter(log.secondsElapsed)}
+                        <div className='log-item-row'>
+                            <div className='log-item-description'>
+                                {log.description}
+                            </div>
                         </div>
                     </div>
                     );

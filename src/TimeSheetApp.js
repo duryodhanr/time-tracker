@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Login from './Pages/Login.js';
 import TimeTracker from './Pages/TimeTracker.js';
 import Moment from 'moment';
-import './TimeSheetApp.css';
+import './TimeSheetApp.scss';
 
 class TimeSheetApp extends Component {
   constructor(props) {
@@ -77,7 +77,7 @@ class TimeSheetApp extends Component {
   render() {
     return (
       <div className="time-sheet-app">
-        <h1>Time Sheet</h1>
+        <h1>Time Tracker</h1>
         {this.renderPage()}
       </div>
     );

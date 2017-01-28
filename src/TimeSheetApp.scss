@@ -1,0 +1,35 @@
+@import './variables.scss';
+.time-sheet-app {
+  text-align: center;
+  padding: 20px;
+  background-color: $col-bg-primary;
+  color: $col-text-secondary;
+  h1, h2, h3, h4, h5 {
+      margin-top: 0;
+    color: $col-text-tertiary;
+  }
+}
+
+input {
+    width: 100%;
+    padding: 15px;
+    box-sizing: border-box;
+    margin-bottom: 5px;
+    background-color: $col-bg-secondary;
+    border: 1px solid white;
+    color: white;
+    font-size: 10pt;
+}
+button {
+    display: flex;
+    flex-grow: 1;
+    padding: 8px;
+    cursor: pointer;
+    text-align: center;
+    margin: 5px;
+    padding: 3% 8%;
+    background-color: $col-action-primary;
+    color: white;
+    border: 1px solid white;
+    text-transform: uppercase;
+}

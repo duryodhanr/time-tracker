@@ -1,0 +1,58 @@
+@import '../variables.scss';
+.time-tracker {
+    input {
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .actions {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+    .time-stamp {
+        color: $col-text-primary;
+        white-space: nowrap;
+        display: inline-block;
+        margin-bottom: 20px;
+        border: 1px solid white;
+        border-radius: 150px;
+        padding: 5px;
+        height: 120px;
+        width: 120px;
+        line-height: 120px;
+        text-align: center;
+        font-size: 14pt;
+    }
+}
+
+.work-log {
+    .log {
+        .log-item {
+            font-size: 10pt;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 10px;
+            .log-item-row {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                margin-bottom: 5px;
+                .log-item-date {
+                    color: $col-text-tertiary;
+                    box-sizing: border-box;
+                }
+                .log-item-description{
+                    color: white;
+                    width: 100%;
+                    box-sizing: border-box;
+                    padding-left: 10px;
+                }
+                .log-item-time {
+                    color: $col-text-primary;
+                    box-sizing: border-box;
+                }
+            }
+        }
+    }
+}
