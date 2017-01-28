@@ -1,0 +1,39 @@
+.time-tracker input {
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+}
+.time-tracker .actions {
+    display: flex;
+    justify-content: space-between;
+}
+.time-tracker .actions button {
+    display: flex;
+    flex-grow: 1;
+    padding: 8px;
+    cursor: pointer;
+    text-align: center;
+    margin: 5px;
+}
+
+.time-tracker .time-stamp {
+    background-color: blue;
+    color: white;
+    border-radius: 25px;
+    padding: 10px;
+    display: inline-block;
+}
+
+.work-log {
+    width: 100%;
+}
+.work-log h2 {
+    text-align: left;
+}
+.work-log .log .log-item {
+    display: flex;
+    justify-content: space-between;
+}
+.work-log .log .log-item-description{
+    min-width: 200px;
+}

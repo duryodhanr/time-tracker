@@ -1,0 +1,19 @@
+.time-sheet-app {
+  text-align: center;
+  padding: 20px;
+}
+
+input {
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+    margin-bottom: 5px;
+}
+button {
+    display: flex;
+    flex-grow: 1;
+    padding: 8px;
+    cursor: pointer;
+    text-align: center;
+    margin: 5px;
+}
