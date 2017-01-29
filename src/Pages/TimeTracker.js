@@ -85,6 +85,7 @@ class TimeTracker extends Component {
       <Input
              className="timer-input"
              autoFocus
+             onBlur={ (e) => this.onSubmitCustomTime( e )}
              onKeyDown={ (e) => (e.key === 'Enter' ? this.onSubmitCustomTime( e ) : '') }
              placeholder={ TimeFormatter.fromSeconds( this.state.elapsed ) }
              value={ this.state.customTimeString }
