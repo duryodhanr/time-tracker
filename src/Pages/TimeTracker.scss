@@ -22,6 +22,17 @@
         line-height: 120px;
         text-align: center;
         font-size: 14pt;
+        input {
+            background-color: transparent;
+            border: 5px solid $col-action-primary;
+            text-align: center;
+            width: 130px;
+            height: 130px;
+            border-radius: 150px;
+            margin: -5px;
+            font-size: 14pt;
+            outline: none;
+        }
     }
 }
 
