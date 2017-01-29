@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import Input from '../Components/Input.js';
 import Button from '../Components/Button.js';
 import WorkLog from '../Components/WorkLog.js';
-import Timer from '../Components/Timer.js';
+import Timer from '../Helpers/Timer.js';
+import TimeFormatter from '../Helpers/TimeFormatter.js';
 import './TimeTracker.scss';
 
 class TimeTracker extends Component {
@@ -10,35 +11,102 @@ class TimeTracker extends Component {
     super(props)
     this.state = {
       description: '',
-      timeElapsed: 0
+      elapsed: 0,
+      enteringCustomTime: false,
+      customTimeString: ""
     }
+    this.timer = new Timer(this.tick.bind(this));
   }
 
-  tick() {
-    this.setState((prevState) => ({
-      timeElapsed: prevState.timeElapsed + 1
-    }));
+  componentDidMount() {
+    this.timer.start();
+  }
+
+  componentWillUnmount() {
+    this.timer.stop();
   }
 
   onLogWork() {
-    this.props.onLogWork(this.state.timeElapsed, this.state.description);
+    this.props.onLogWork(this.timer.getElapsed(), this.state.description);
     this.resetForm();
   }
 
-  resetForm() {
+  tick(elapsed) {
     this.setState({
-      timeElapsed: 0,
+      elapsed: elapsed
+    })
+  }
+
+  onTimerClick(e) {
+    e.stopPropagation();
+    if (this.state.enteringCustomTime) {
+      this.onSubmitCustomTime();
+    } else {
+      this.onCancelCustomTime();
+    }
+  }
+
+  onCustomTimeInputChange(e) {
+    this.setState({
+      customTimeString: e.target.value
+    })
+  }
+
+  onCancelCustomTime() {
+    this.timer.stop();
+    this.setState({
+      enteringCustomTime: true
+    });
+  }
+
+  onSubmitCustomTime() {
+    var newElapsedTime = TimeFormatter.toSeconds(this.state.customTimeString);
+    if (parseInt(newElapsedTime, 10) < 1) {
+      newElapsedTime = this.state.elapsed;
+    }
+    this.timer.setElapsed(newElapsedTime);
+    this.timer.start();
+    this.setState({
+      enteringCustomTime: false,
+      customTimeString: ""
+    });
+  }
+
+  resetForm() {
+    this.timer.reset();
+    this.setState({
       description: ""
     });
+  }
+
+  renderTimer() {
+    if (this.state.enteringCustomTime) {
+      return (
+        <Input 
+          className="timer-input"
+          autoFocus
+          onKeyDown={(e)=> (e.key === 'Enter' ? this.onSubmitCustomTime(e) : '')}
+          placeholder={TimeFormatter.fromSeconds(this.state.elapsed)} 
+          value={this.state.customTimeString}
+          onChange={(e)=>this.onCustomTimeInputChange(e)} 
+        />
+      );
+    }
+    return TimeFormatter.fromSeconds(this.state.elapsed);
   }
 
   render() {
     return (
       <div className="time-tracker">
-        <Timer tick={this.tick.bind(this)} timeElapsed={this.state.timeElapsed}/>
+        <div className="timer">
+          <span className="time-stamp" onClick={(e) => this.onTimerClick(e)}>
+            {this.renderTimer()}
+          </span>
+        </div>
         <Input 
           placeholder="Description of your task..."
           value={this.state.description} 
+          onKeyDown={(e)=> (e.key === 'Enter' ? this.onLogWork(e) : '')}
           onChange={(e)=>this.setState({description: e.target.value})} 
           />
           <div className="actions">

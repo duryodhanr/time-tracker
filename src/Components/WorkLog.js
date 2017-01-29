@@ -18,7 +18,7 @@ class WorkLog extends Component {
                                 {Moment.unix(log.date).format("ddd, Do MMM YY")}
                             </div>
                             <div className='log-item-time'>
-                                {TimeFormatter(log.secondsElapsed)}
+                                {TimeFormatter.fromSeconds(log.secondsElapsed)}
                             </div>
                         </div>
                         <div className='log-item-row'>
