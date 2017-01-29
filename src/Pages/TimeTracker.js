@@ -98,7 +98,7 @@ class TimeTracker extends Component {
   render() {
     return (
     <div className="time-tracker">
-      <div className="timer">
+      <div className="timer" title="Click to enter custom time e.g. 1h 30m">
         <span
               className="time-stamp"
               onClick={ (e) => this.onTimerClick( e ) }>{ this.renderTimer() }</span>
