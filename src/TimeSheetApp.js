@@ -5,81 +5,84 @@ import Moment from 'moment';
 import './TimeSheetApp.scss';
 
 class TimeSheetApp extends Component {
-  constructor(props) {
-    super(props);
+  constructor( props ) {
+    super( props );
     this.state = {
       loggedIn: false,
       employeeData: {}
     }
   }
-  login(employeeId, password) {
+  login( employeeId, password ) {
     /*
-      Authenticate employeeId & password via AJAX
+      - AJAX HERE - 
+      Authenticate employeeId & password
       and retrieve historic employeeData
     */
     var historicEmployeeData = {
-        id: 8768,
-        log: [
-          {
-            date: 1485129710,
-            secondsElapsed: 1200,
-            description: "Client Meeting",
-          },{
-            date: 1485128710,
-            secondsElapsed: 2555,
-            description: "Learnt Redux",
-          },{
-            date: 1485119710,
-            secondsElapsed: 600,
-            description: "Lunch",
-          }
-        ]
+      id: 8768,
+      log: [
+        {
+          date: 1485129710,
+          secondsElapsed: 1200,
+          description: "Client Meeting",
+        },
+        {
+          date: 1485128710,
+          secondsElapsed: 2555,
+          description: "Learnt Redux",
+        },
+        {
+          date: 1485119710,
+          secondsElapsed: 600,
+          description: "Lunch",
+        }
+      ]
     };
-    this.setState({
+    this.setState( {
       loggedIn: true,
       employeeData: historicEmployeeData
-    })
+    } )
   }
   logout() {
     /**
-     * Save todays worklog to server
+       - AJAX HERE - 
+       Save todays worklog to server
      */
-    this.setState({
+    this.setState( {
       loggedIn: false,
       employeeData: {}
-    })
+    } )
   }
 
-  onLogWork(timeElapsed, description) {
+  onLogWork( timeElapsed, description ) {
     var data = this.state.employeeData;
 
-    data.log.push({
+    data.log.push( {
       date: Moment().unix(),
       description: description,
       secondsElapsed: timeElapsed
-    });
+    } );
 
-    this.setState({
+    this.setState( {
       employeeData: data
-    });
+    } );
   }
 
   renderPage() {
-    if (this.state.loggedIn && this.state.employeeData) {
-      return <TimeTracker 
-                log={this.state.employeeData.log}
-                onLogWork={this.onLogWork.bind(this)} 
-                onLogout={this.logout.bind(this)}
-                />;
+    if ( this.state.loggedIn && this.state.employeeData ) {
+      return <TimeTracker
+                          log={ this.state.employeeData.log }
+                          onLogWork={ this.onLogWork.bind( this ) }
+                          onLogout={ this.logout.bind( this ) } />;
     }
-    return <Login onLogin={this.login.bind(this)} />;
+    return <Login onLogin={ this.login.bind( this ) } />;
   }
   render() {
     return (
-      <div className="time-sheet-app">
-        <h1>Time Tracker</h1>
-        {this.renderPage()}
-      </div>
+    <div className="time-sheet-app">
+      <h1>Time Tracker</h1>
+      { this.renderPage() }
+    </div>
     );
   }
 }
